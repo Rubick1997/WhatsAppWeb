@@ -41,13 +41,23 @@
 
 .sidebar__headerRight {
     display: flex;
-    align-items: center;
+    align-self: flex-end;
     justify-content: space-between;
     min-width: 10vw;
-    padding-right: 0px;
+     
 }
 
 .sidebar__headerRight>.MuiSvgIcon-root {
     margin-right: 2vw;
     font-size: 24px !important;
+}
+
+.sidebar__chats{
+    background-color: white;
+    flex: 1;
+    overflow: scroll;
+    overflow-x: hidden; 
+}
+.sidebar__chats::-webkit-scrollbar-thumb {
+    width: 2px;
 }
