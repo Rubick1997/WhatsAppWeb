@@ -15,12 +15,20 @@ function Chat() {
 	const [message, setMessage] = useState("");
 	const { roomId } = useParams();
 	const [roomName, setRoomName] = useState("");
-
+	const [messages, setMessages] = useState([]);
 	useEffect(() => {
 		if (roomId) {
 			db.collection("rooms")
 				.doc(roomId)
 				.onSnapshot((snapshot) => setRoomName(snapshot.data().name));
+
+			db.collection("rooms")
+				.doc(roomId)
+				.collection("messages")
+				.orderBy("timestamp", "asc")
+				.onSnapshot((snapshot) => {
+					setMessages(snapshot.docs.map((doc) => doc.data()));
+				});
 		}
 	}, [roomId]);
 
@@ -33,7 +41,6 @@ function Chat() {
 		console.log("You typed ", message);
 		setMessage("");
 	};
-
 	return (
 		<div className='chat'>
 			<div className='chat__header'>
@@ -52,17 +59,20 @@ function Chat() {
 				</div>
 			</div>
 			<div className='chat__body'>
-				<p className={`chat__message ${true && "chat__reciever"}`}>
-					Hey, how are you
-					<p className='chat__timeStamp'>2:32pm</p>
-				</p>
+				{messages.map((item) => (
+					<p className={`chat__message ${true && "chat__reciever"}`}>
+						{item.message}
+						<span className='chat__timeStamp'>
+							{new Date(item.timestamp?.toDate()).toUTCString()}
+						</span>
+					</p>
+				))}
 			</div>
 			<div className='chat__footer'>
 				<div className='chat__icons'>
 					<InsertEmoticonRoundedIcon />
 					<AttachFileIcon className='rotate' />
 				</div>
-
 				<form>
 					<input
 						type='text'
