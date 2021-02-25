@@ -36,6 +36,19 @@
     flex-direction: column;
 }
 
+.chat__reciever {
+    margin-left: auto;
+    background-color: #dcf8c6;
+}
+
+.rotate {
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
 .chat__timeStamp {
     margin-top: 4px;
     margin-left: 10px;
@@ -62,4 +75,36 @@
 .chat__body::-webkit-scrollbar {
     width: 5px;
     background-color: none
+}
+
+.chat__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 62px;
+    border-top: 1px solid lightgray;
+}
+
+.chat__footer>form {
+    flex: 1;
+    display: flex;
+    padding: 10px;
+}
+
+.chat__footer>form>input {
+    flex: 1;
+    border-radius: 30px;
+    padding: 10px;
+    border: none;
+}
+
+.send__button {
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+
+.send__button ::-moz-focus-inner {
+    border: 0;
 }
