@@ -41,14 +41,14 @@ function Chat() {
 	}, []);
 
 	const onPress = (e) => {
-        e.preventDefault();
-				db.collection("rooms").doc(roomId).collection("messages").add({
-					message: message,
-					name: user.displayName,
-					timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-				});
+		e.preventDefault();
+		db.collection("rooms").doc(roomId).collection("messages").add({
+			message: message,
+			name: user.displayName,
+			timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+		});
 
-				setMessage("");
+		setMessage("");
 	};
 	return (
 		<div className='chat'>
@@ -56,7 +56,11 @@ function Chat() {
 				<Avatar src={`https://avatars.dicebear.com/api/human/${seed}.svg`} />
 				<div className='chat__headerInfo'>
 					<h3>{roomName}</h3>
-					<p>Last seen at ...</p>
+					<p>
+						Last seen {new Date(
+							messages[messages.length - 1]?.timestamp?.toDate()
+						).toUTCString()}
+					</p>
 				</div>
 				<div className='chat__headerRight'>
 					<IconButton>
@@ -69,7 +73,10 @@ function Chat() {
 			</div>
 			<div className='chat__body'>
 				{messages.map((item) => (
-					<p className={`chat__message ${true && "chat__reciever"}`}>
+					<p
+						className={`chat__message ${
+							item.name === user.displayName && "chat__reciever"
+						}`}>
 						{item.message}
 						<span className='chat__timeStamp'>
 							{new Date(item.timestamp?.toDate()).toUTCString()}
