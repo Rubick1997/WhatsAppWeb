@@ -2,7 +2,7 @@ import { Avatar, IconButton } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import "./Chat.css";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
-import SearchOutlinedIcon from "@material-ui/icons/SearchOutlined";
+import { SearchOutlined } from "@material-ui/icons";
 import InsertEmoticonRoundedIcon from "@material-ui/icons/InsertEmoticonRounded";
 import AttachFileIcon from "@material-ui/icons/AttachFile";
 import MicIcon from "@material-ui/icons/Mic";
@@ -18,7 +18,8 @@ function Chat() {
 
 	const onPress = (e) => {
 		e.preventDefault();
-		console.log("You typed ", message)
+		console.log("You typed ", message);
+		setMessage("");
 	};
 
 	return (
@@ -31,7 +32,7 @@ function Chat() {
 				</div>
 				<div className='chat__headerRight'>
 					<IconButton>
-						<SearchOutlinedIcon />
+						<SearchOutlined/>
 					</IconButton>
 					<IconButton>
 						<MoreVertIcon />

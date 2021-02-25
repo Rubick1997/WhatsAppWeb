@@ -4,7 +4,7 @@
     flex: 0.30;
 }
 
-.sidebar__search {
+ .sidebar__search {
     display: flex;
     align-items: center;
     background-color: #f6f6f6;
@@ -21,16 +21,17 @@
     border-radius: 20px;
 }
 
-.sidebar__searchContainer>.MuiSvgIcon-root {
+.sidebar__searchContainer> .MuiSvgIcon-root{
     color: gray;
-    padding: 10px;
 }
 
-.sidebar__searchContainer>input {
-    border: none;
+.sidebar__searchContainer > input{
+    border:none;
     margin-left: 10px;
     width: 80%;
+    outline: none;
 }
+
 
 .sidebar__header {
     display: flex;
