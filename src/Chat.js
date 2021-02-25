@@ -58,8 +58,11 @@ function Chat() {
 				</p>
 			</div>
 			<div className='chat__footer'>
-				<InsertEmoticonRoundedIcon />
-				<AttachFileIcon className='rotate' />
+				<div className='chat__icons'>
+					<InsertEmoticonRoundedIcon />
+					<AttachFileIcon className='rotate' />
+				</div>
+
 				<form>
 					<input
 						type='text'

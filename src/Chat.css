@@ -104,7 +104,14 @@
     cursor: pointer;
 }
 
-
 .send__button ::-moz-focus-inner {
     border: 0;
+}
+
+.chat__icons {
+    padding: 5px;
+    justify-content: space-around;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
