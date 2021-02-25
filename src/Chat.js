@@ -9,6 +9,8 @@ import MicIcon from "@material-ui/icons/Mic";
 import SendIcon from "@material-ui/icons/Send";
 import { useParams } from "react-router";
 import db from "./firebase";
+import { useStateValue } from "./StateProvider";
+import firebase from "firebase";
 
 function Chat() {
 	const [seed, setSeed] = useState("");
@@ -16,6 +18,8 @@ function Chat() {
 	const { roomId } = useParams();
 	const [roomName, setRoomName] = useState("");
 	const [messages, setMessages] = useState([]);
+	const [{ user }, dispatch] = useStateValue();
+
 	useEffect(() => {
 		if (roomId) {
 			db.collection("rooms")
@@ -37,9 +41,14 @@ function Chat() {
 	}, []);
 
 	const onPress = (e) => {
-		e.preventDefault();
-		console.log("You typed ", message);
-		setMessage("");
+        e.preventDefault();
+				db.collection("rooms").doc(roomId).collection("messages").add({
+					message: message,
+					name: user.displayName,
+					timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+				});
+
+				setMessage("");
 	};
 	return (
 		<div className='chat'>
